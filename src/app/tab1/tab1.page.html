@@ -25,13 +25,14 @@
     <!-- carrusel -->
    
   <!-- cierre de carrusel -->
+     <!-- inicio de buscador -->
   <div class="container">
     <ion-searchbar value="Value"></ion-searchbar>
   </div>
-
+  <!-- cierre de buscador -->
   <ion-card>
     <img  id="centerimg" alt="Silhouette of mountains" src="assets/pan_muerto.jpeg"  />
-    <ion-card-header>
+      <ion-card-header>
       <ion-card-title>Pan de Muerto</ion-card-title>
       <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
     </ion-card-header>
@@ -40,24 +41,34 @@
      $150.00 c/u
     </ion-card-content>
 
-    
-  <ion-button fill="clear">Compra ahora</ion-button>
-  <ion-button fill="clear">Añade al carrito</ion-button>
-  </ion-card>
+    <ion-button fill="clear" (click)="comprarAhora({ nombre: 'Pan de Muerto', precio: 150 })">
+      Añadir al carrito
+    </ion-button>
+    <ion-button fill="clear" (click)="anadirAlCarrito({ nombre: 'Pan de Muerto', precio: 150 })">
+      Compra ahora
+    </ion-button>
+ </ion-card>
+
+
+
   <ion-card>
     <img  id="centerimg" alt="Silhouette of mountains" src="assets/nueces.jpg"  />
     <ion-card-header>
-      <ion-card-title>Pan de Muerto</ion-card-title>
+      <ion-card-title>Pan de nuez con chocolate</ion-card-title>
       <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
-     $150.00 c/u
+     $99.00 c/u
     </ion-card-content>
 
-    
-  <ion-button fill="clear">Compra ahora</ion-button>
-  <ion-button fill="clear">Añade al carrito</ion-button>
+    <ion-button fill="clear" (click)="comprarAhora({ nombre: 'Pan de nuez con chocolate', precio: 99 })">
+      Añadir al carrito
+    </ion-button>
+    <ion-button fill="clear" (click)="anadirAlCarrito({ nombre: 'Pan de nuez con chocolate', precio: 99 })">
+      Compra ahora
+    </ion-button>
+
   </ion-card>
   
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">

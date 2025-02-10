@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProductoService } from '../services/producto.service';
+
 
 @Component({
   selector: 'app-tab2',
@@ -7,7 +9,14 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class Tab2Page {
+  compras: any[] = [];
+  @Input() name?: string;
 
-  constructor() {}
+  constructor(private productoService: ProductoService) {}
+  
+  ionViewWillEnter() {
+    this.compras = this.productoService.obtenerCompras();
+  }
+
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductoService } from '../services/producto.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,7 +8,10 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class Tab3Page {
+  carrito: any[] = [];
 
-  constructor() {}
-
+  constructor(private productoService: ProductoService) {}
+  ionViewWillEnter() {
+    this.carrito = this.productoService.obtenerCarrito();
+  }
 }

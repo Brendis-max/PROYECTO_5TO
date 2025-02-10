@@ -11,7 +11,16 @@
 
 <ion-content [fullscreen]="true">
  
-  <div id="container">
+  <!-- <div id="container">
     <img class="logo" src="assets/pedido.png" alt="Logo Pasteles Mimi" width="120px"  height="120px"> 
-  </div>
+  </div> -->
+  <ion-list>
+    <ion-item *ngFor="let producto of carrito">
+      <ion-label>
+        <h2>{{ producto.nombre }}</h2>
+        <p>Precio: ${{ producto.precio }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

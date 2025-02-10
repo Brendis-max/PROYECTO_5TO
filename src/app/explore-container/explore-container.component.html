@@ -1,3 +1,13 @@
-<div id="container">
-  <img class="logo" src="assets/carrito.png" alt="Logo Pasteles Mimi" width="120px"  height="120px"> 
-</div>
+
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let compra of compras">
+      <ion-label>
+        <h2>{{ compra.nombre }}</h2>
+        <p>Precio: ${{ compra.precio }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
