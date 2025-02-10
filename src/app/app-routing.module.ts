@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'catalogo',
+    loadChildren: () => import('./catalogo/catalogo.module').then( m => m.CatalogoPageModule)
+  },
+  {
     path: 'nuevop',
     loadChildren: () => import('./nuevop/nuevop.module').then( m => m.NuevopPageModule)
   },
@@ -27,10 +31,7 @@ const routes: Routes = [
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
   },
-  {
-    path: 'catalogo',
-    loadChildren: () => import('./catalogo/catalogo.module').then( m => m.CatalogoPageModule)
-  },
+ 
 
  
 ];

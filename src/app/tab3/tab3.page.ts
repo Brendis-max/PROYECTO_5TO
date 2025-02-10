@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { ProductoService } from '../services/producto.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { ProductoService } from '../services/producto.service';
 export class Tab3Page {
   carrito: any[] = [];
 
-  constructor(private productoService: ProductoService) {}
+  constructor(private navController: NavController,private productoService: ProductoService) {}
   ionViewWillEnter() {
     this.carrito = this.productoService.obtenerCarrito();
   }
+  catalogo() {
+    this.navController.navigateForward('/catalogo'); //  la ruta de catalogo
+}
 }

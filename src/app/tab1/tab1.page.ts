@@ -19,9 +19,11 @@ export class Tab1Page {
   
   }
  
-
+  catalogo() {
+    this.navController.navigateForward('/catalogo'); //  la ruta de catalogo
+  }
   nuevop() {
-      this.navController.navigateForward('/nuevop'); // Ajusta la ruta si es diferente
+      this.navController.navigateForward('/nuevop'); //  la ruta si es nuevo pastel
   }
   comprarAhora(producto: any) {
     this.productoService.agregarCompra(producto);

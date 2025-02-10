@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -12,8 +13,10 @@ export class Tab2Page {
   compras: any[] = [];
   @Input() name?: string;
 
-  constructor(private productoService: ProductoService) {}
-  
+  constructor(private navController: NavController,private productoService: ProductoService) {}
+  catalogo() {
+    this.navController.navigateForward('/catalogo'); //  la ruta de catalogo
+}
   ionViewWillEnter() {
     this.compras = this.productoService.obtenerCompras();
   }

@@ -2,7 +2,11 @@
   <ion-toolbar>
     <ion-title>Pasteles Mimi</ion-title>
     <ion-buttons slot="end">
-      <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+
+      <ion-button (click)="catalogo()">
+        <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+      </ion-button>
+
       <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
       <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
     </ion-buttons>
@@ -25,13 +29,10 @@
     <!-- carrusel -->
    
   <!-- cierre de carrusel -->
-     <!-- inicio de buscador -->
-  <div class="container">
-    <ion-searchbar value="Value"></ion-searchbar>
-  </div>
-  <!-- cierre de buscador -->
+   
+   <p>Promociones Pasteles</p>
   <ion-card>
-    <img  id="centerimg" alt="Silhouette of mountains" src="assets/pan_muerto.jpeg"  />
+    <img  id="centerimg" alt="Silhouette of mountains" src="assets/rosca2.jpg"  />
       <ion-card-header>
       <ion-card-title>Pan de Muerto</ion-card-title>
       <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
