@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Pasteles Mimi</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+      <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
+      <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pasteles Mimi</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="logocenter">
+    <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
+  
+
+  </div>
+    <!-- carrusel -->
+   
+  <!-- cierre de carrusel -->
+  <div class="container">
+    <ion-searchbar value="Value"></ion-searchbar>
+  </div>
+
+  <ion-card>
+    <img  id="centerimg" alt="Silhouette of mountains" src="assets/pan_muerto.jpeg"  />
+    <ion-card-header>
+      <ion-card-title>Pan de Muerto</ion-card-title>
+      <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+     $150.00 c/u
+    </ion-card-content>
+
+    
+  <ion-button fill="clear">Compra ahora</ion-button>
+  <ion-button fill="clear">Añade al carrito</ion-button>
+  </ion-card>
+  <ion-card>
+    <img  id="centerimg" alt="Silhouette of mountains" src="assets/nueces.jpg"  />
+    <ion-card-header>
+      <ion-card-title>Pan de Muerto</ion-card-title>
+      <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+     $150.00 c/u
+    </ion-card-content>
+
+    
+  <ion-button fill="clear">Compra ahora</ion-button>
+  <ion-button fill="clear">Añade al carrito</ion-button>
+  </ion-card>
+  
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button class="boton" [routerLink]="'/nuevop'" (click)="nuevop()" >
+      <ion-icon class="circle" name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  
+</ion-content>

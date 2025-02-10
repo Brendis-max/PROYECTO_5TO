@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+ 
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Iniciar sesión</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <!-- Formulario -->
+  
+    <div id="logocenter">
+      <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
+    </div>
+  
+    <h1>Bienvenido</h1>
+  
+
+    <p>Iniciar sesion</p>
+    <div id="form1">
+      <ion-input [(ngModel)]="email" label="Correo electrónico" label-placement="floating" fill="solid" placeholder="Escribe tu correo"></ion-input>
+      
+      <ion-input [(ngModel)]="password" label="Contraseña" label-placement="floating" fill="solid" type="password" placeholder="Escribe tu contraseña"></ion-input>
+    </div>
+  
+    <ion-button expand="block" (click)="login()">Ingresar</ion-button>
+  
+    <ion-text>
+      <p>¿No tienes cuenta? <a routerLink="/register" routerLinkActive="active">Regístrate</a></p>
+    </ion-text>
+    
+  </ion-content>
