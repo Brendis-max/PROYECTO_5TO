@@ -1,36 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
-
-  
-<ion-content [fullscreen]="true">
-  <!-- Formulario -->
-  <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
+<ion-content class="ion-padding">
+  <form #registerForm="ngForm" (ngSubmit)="register()">
+    
     <ion-item>
-
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input name="email" [(ngModel)]="email" type="email" helperText="Enter a valid email" errorText="Invalid email" ngModel email required></ion-input>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
     </ion-item>
 
-    
-    <!--contraseña-->
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input  name="password" [(ngModel)]="password" type="password" required></ion-input>
+      <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Confirme su contraseña</ion-label>
-      <ion-input   name="password_confirm" [(ngModel)]="password_confirm" type="password" required></ion-input>
-    
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
     </ion-item>
 
-    <ion-button type="submit" expand="block">Registrarse</ion-button>
+    <ion-button expand="block" type="submit">Registrarse</ion-button>
+    <ion-button color="medium" expand="block" (click)="goToLogin()">Iniciar Sesión</ion-button>
   </form>
-
-
 </ion-content>

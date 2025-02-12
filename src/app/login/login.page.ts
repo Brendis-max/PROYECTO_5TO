@@ -1,51 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
-
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: false
+  standalone:false
 })
 export class LoginPage {
+  email: string = '';
+  password: string = '';
 
-  email: string = "";
-  password: string = "";
+  constructor(private router: Router) {}
 
-  constructor(private navController: NavController, private toastController: ToastController) { }
- 
-
-  validateEmail(email: string): boolean {
-    return email.includes('@');
-  }
-
-  // Validación básica de la contraseña: al menos 6 caracteres
-  validatePassword(password: string): boolean {
-    return password.length >= 6;
-  }
-
-  async login() {
-    // Validar si ambos campos están llenos
+  login() {
     if (!this.email || !this.password) {
-      this.presentToast('top', 'Por favor ingresa ambos campos (correo y contraseña).');
-    } else if (!this.validateEmail(this.email)) {
-      this.presentToast('top', 'Por favor ingresa un correo electrónico válido.');
-    } else if (!this.validatePassword(this.password)) {
-      this.presentToast('top', 'La contraseña debe tener al menos 6 caracteres.');
+      alert('Por favor, ingrese su correo y contraseña.');
+      return;
+    }
+
+    // Obtener los usuarios registrados
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find((u: any) => u.email === this.email && u.password === this.password);
+
+    if (user) {
+      alert('Inicio de sesión exitoso.');
+      this.router.navigate(['/tabs/tab1']); // Redirigir a la página principal
     } else {
-      console.log("Correo y contraseña válidos, redirigiendo...");
-      this.navController.navigateRoot('/tabs');
+      alert('Correo o contraseña incorrectos.');
     }
   }
 
-  async presentToast(position: 'top' | 'middle' | 'bottom', message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 1500,
-      position: position,
-    });
-
-    await toast.present();
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }
