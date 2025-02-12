@@ -34,52 +34,58 @@
   </div>
 
   <!-- Formulario -->
+ 
   <ion-list>
     <ion-item>
       <ion-label>Tamaño del pastel</ion-label>
-      <ion-select>
-        <ion-select-option>Pequeño</ion-select-option>
-        <ion-select-option>Mediano</ion-select-option>
-        <ion-select-option>Grande</ion-select-option>
+      <ion-select [(ngModel)]="pedido.tamano">
+        <ion-select-option value="Pequeño">Pequeño</ion-select-option>
+        <ion-select-option value="Mediano">Mediano</ion-select-option>
+        <ion-select-option value="Grande">Grande</ion-select-option>
       </ion-select>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Forma del pastel</ion-label>
-      <ion-select>
-        <ion-select-option>Redondo</ion-select-option>
-        <ion-select-option>Cuadrado</ion-select-option>
+      <ion-select [(ngModel)]="pedido.forma">
+        <ion-select-option value="Redondo">Redondo</ion-select-option>
+        <ion-select-option value="Cuadrado">Cuadrado</ion-select-option>
       </ion-select>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Sabor del pan</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="pedido.sabor"></ion-input>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Relleno</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="pedido.relleno"></ion-input>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Decoración</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="pedido.decoracion"></ion-input>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Mensaje en el pastel</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="pedido.mensaje"></ion-input>
     </ion-item>
-
+  
     <ion-item>
       <ion-label>Entrega a domicilio</ion-label>
-      <ion-toggle></ion-toggle>
+      <ion-toggle [(ngModel)]="pedido.entrega"></ion-toggle>
     </ion-item>
   </ion-list>
-
+  
+  <!-- Botón para enviar el pedido -->
+  <ion-button expand="full" (click)="hacerPedido()">
+    Hacer Pedido
+  </ion-button>
+  
   <!-- Botones -->
-  <ion-buttons>
+  <!-- <ion-buttons>
     <ion-button fill="outline" (click)="anadirAlCarrito(producto)">
       <ion-icon slot="start" name="cart-outline"></ion-icon> Añadir al carrito
     </ion-button>
@@ -87,5 +93,5 @@
     <ion-button expand="full" (click)="hacerPedido()">
       Hacer Pedido
     </ion-button>
-  </ion-buttons>
+  </ion-buttons> -->
 </ion-content>

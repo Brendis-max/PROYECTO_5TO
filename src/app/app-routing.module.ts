@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'detalle-pedido',
+    loadChildren: () => import('./detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },
+  {
     path: '**', // Redirigir cualquier ruta no encontrada al login
     redirectTo: '',
     pathMatch: 'full'
@@ -31,6 +35,8 @@ const routes: Routes = [
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
   },
+ 
+
  
 
  

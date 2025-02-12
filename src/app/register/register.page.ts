@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   standalone:false
 })
 export class RegisterPage {
+  nombre: string = '';
+  usuario: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';

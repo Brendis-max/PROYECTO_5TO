@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="pedido">
+    <ion-card-header>
+      <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+      <ion-card-subtitle>Fecha: {{ pedido.fecha }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+
+      <h3>Detalles del Producto</h3>
+      <p><strong>Nombre:</strong> {{ pedido.producto?.nombre || 'No disponible' }}</p>
+      <p><strong>Tamaño:</strong> {{ pedido.detalles?.tamano }}</p>
+      <p><strong>Forma:</strong> {{ pedido.detalles?.forma }}</p>
+      <p><strong>Sabor:</strong> {{ pedido.detalles?.sabor }}</p>
+      <p><strong>Relleno:</strong> {{ pedido.detalles?.relleno }}</p>
+      <p><strong>Decoración:</strong> {{ pedido.detalles?.decoracion }}</p>
+      <p><strong>Mensaje:</strong> {{ pedido.detalles?.mensaje }}</p>
+      <p><strong>Entrega:</strong> {{ pedido.detalles?.entrega ? 'Sí' : 'No' }}</p>
+
+      <ion-button expand="full" color="primary" (click)="regresar()">Volver</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!pedido" class="no-pedido">
+    <p>No se encontraron detalles para este pedido.</p>
+  </div>
+</ion-content>

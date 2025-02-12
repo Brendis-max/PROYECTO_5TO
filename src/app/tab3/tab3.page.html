@@ -3,7 +3,7 @@
     <ion-title>Mis pedidos</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="catalogo()">
-        <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+        <ion-icon aria-hidden="true" name="cart-outline"></ion-icon>
       </ion-button>
       <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
       <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
@@ -11,18 +11,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
- 
-  <!-- <div id="container">
-    <img class="logo" src="assets/pedido.png" alt="Logo Pasteles Mimi" width="120px"  height="120px"> 
-  </div> -->
+<ion-content class="ion-padding">
   <ion-list>
-    <ion-item *ngFor="let producto of carrito">
+    <ion-item *ngFor="let pedido of pedidos">
       <ion-label>
-        <h2>{{ producto.nombre }}</h2>
-        <p>Precio: ${{ producto.precio }}</p>
+        <h2>Pedido #{{ pedido.id }}</h2>
+        <p>Fecha: {{ pedido.fecha }}</p>
+        <p>Estado: {{ pedido.estado }}</p>
+        <p>Producto: {{ pedido.producto?.nombre || 'Sin nombre' }}</p>
       </ion-label>
+      <ion-button (click)="verDetallePedido(pedido)" color="primary">Ver Detalles</ion-button>
     </ion-item>
   </ion-list>
 
+  <div *ngIf="pedidos.length === 0" class="no-pedidos">
+    <p>No hay pedidos aún.</p>
+  </div>
 </ion-content>

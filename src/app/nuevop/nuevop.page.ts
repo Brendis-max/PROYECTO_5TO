@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-nuevop',
@@ -10,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NuevopPage implements OnInit {
   producto: any;
+
   pastel = {
     nombre: '',
     tamano: '',
@@ -18,18 +20,27 @@ export class NuevopPage implements OnInit {
     imagen: ''
   };
 
+  pedido:any = {
+    tamano: '',
+    forma: '',
+    sabor: '',
+    relleno: '',
+    decoracion: '',
+    mensaje: '',
+    entrega: false
+  };
 
+  constructor(private route: ActivatedRoute,private navController: NavController,private router: Router, private pedidoService: PedidoService) { 
 
-  constructor(private route: ActivatedRoute,private navController: NavController,private router: Router) { 
     const navigationState = this.router.getCurrentNavigation()?.extras.state;
     if (navigationState) {
       this.producto = navigationState['product'] ?? null;
     }
-  
+
     this.route.queryParams.subscribe(params => {
       if (params['producto']) {
         this.producto = JSON.parse(params['producto']);
-        console.log("Producto recibido en NuevopPage:", this.producto);  // Agregar este log
+        console.log("Producto recibido en NuevopPage:", this.producto);
       }
     });
   }
@@ -56,11 +67,24 @@ export class NuevopPage implements OnInit {
   anadirAlCarrito(producto: any) {
     console.log('Producto añadido al carrito:', producto);
   }
-
   hacerPedido() {
-    console.log('Pedido realizado:', this.producto);
-  }
-  ngOnInit() {
+    // Crear el objeto del nuevo pedido
+    const nuevoPedido = {
+      id: Math.floor(Math.random() * 10000),
+      fecha: new Date().toISOString().split('T')[0],
+      estado: 'Pendiente',
+      detalles: this.pedido,
+      producto: this.producto // Incluimos el producto seleccionado
+    };
+
+    // Guardar el pedido en el servicio
+    this.pedidoService.agregarPedido(nuevoPedido);
+
+    // Redirigir a Tab 3 donde se mostrarán los pedidos
+    this.navController.navigateRoot('/tabs/tab3');
   }
 
+  ngOnInit() { }
 }
+ 
+
