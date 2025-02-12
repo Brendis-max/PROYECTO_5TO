@@ -1,5 +1,169 @@
-ion-icon {
-    font-size: 20px;
-    padding: 2px;
-    color:  #ff3399;;
+
+  
+  p{
+    text-align:center;
+    font-family:cursive;
+    color:#f71e71;
+    }
+    
+    // .container{
+    //       display: flex;
+    //       justify-content: center;
+    //       align-items: center;
+        
+    //     img{
+    //       height: 20%;
+    //       width: 20%;
+    //       text-align: center;
+    //     }
+    //     .boton{
+    //       background-color: #ff3399;
+    //     }
+    // }
+    // #centerimg{
+    //   align-items: center;
+    //   text-align: center;
+    // }
+  
+    /* Tarjetas alineadas correctamente */
+    ion-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+    }
+    
+    ion-col {
+      display: flex;
+    }
+    
+    /* Ajuste del tamaño de las tarjetas */
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Distribuye el contenido equitativamente */
+      align-items: center;
+      text-align: center;
+      
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      width: 100%;
+      height: 100%; /* Hace que todas las tarjetas sean del mismo tamaño */
+    }
+    
+    /* Evita que las imágenes distorsionen el tamaño */
+    ion-card img {
+      width: 100%;
+      height: 150px; /* Ajusta la altura de la imagen */
+      object-fit: cover; /* Mantiene la proporción sin deformar */
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    
+    /* Ajusta la altura del contenido */
+    ion-card-content {
+      flex-grow: 1; /* Permite que el contenido se expanda */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 1.1rem;
+      
+      font-weight: bold;
+      padding: 10px;
+    }
+    
+    /* Asegura que los botones estén en la misma posición en todas las tarjetas */
+    ion-button {
+      width: 90%;
+      margin-bottom: 10px;
+    }
+  ion-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    // background: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 90%;
+    max-width: 350px;
+    margin: 15px auto;
+    padding-bottom: 10px;
   }
+  
+  /* Efecto hover en tarjetas */
+  ion-card:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Imágenes dentro de las tarjetas */
+  #centerimg {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  /* Títulos y subtítulos dentro de la tarjeta */
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  ion-card-subtitle {
+    font-size: 0.9rem;
+    color: #d46a8a;
+  }
+  
+  /* Precio dentro de la tarjeta */
+  ion-card-content {
+    font-size: 1.1rem;
+    color: #d46a8a;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Botones dentro de las tarjetas */
+  ion-button {
+    border-radius: 20px;
+    font-weight: bold;
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el botón de añadir al carrito */
+  ion-button[fill="clear"]:first-of-type {
+    --background: #ff69b4; /* Rosa intenso */
+    --color: white;
+  }
+  
+  ion-button[fill="clear"]:first-of-type:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* Estilo para el botón de compra */
+  ion-button[fill="clear"]:last-of-type {
+    --background: #ff4d6d; /* Rojo-rosa */
+    --color: white;
+  }
+  
+  ion-button[fill="clear"]:last-of-type:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* Botón flotante */
+  ion-fab-button.boton {
+    --background: #ff69b4;
+    --color: white;
+    --border-radius: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  ion-fab-button.boton:hover {
+    filter: brightness(1.1);
+  }
+  
+  

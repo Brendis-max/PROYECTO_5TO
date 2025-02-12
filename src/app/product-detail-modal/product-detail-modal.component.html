@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ product.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-img [src]="product.image" alt="{{ product.title }}"></ion-img>
+  <ion-card-header>
+    <ion-card-title>{{ product.title }}</ion-card-title>
+    <ion-card-subtitle>{{ product.category }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <p>{{ product.description }}</p>
+    <strong>Precio: {{ product.price }}</strong>
+  </ion-card-content>
+
+  <ion-button expand="full" (click)="goToCustomize()">Personalizar</ion-button>
+</ion-content>
+

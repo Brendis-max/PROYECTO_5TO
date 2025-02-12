@@ -1,17 +1,21 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Pasteles Mimi</ion-title>
     <ion-buttons slot="end">
-
       <ion-button (click)="catalogo()">
-        <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+        <ion-icon aria-hidden="true" name="cart-outline"></ion-icon>
       </ion-button>
-
-      <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
-      <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      <ion-button>
+        <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -20,63 +24,76 @@
       <ion-title size="large">Pasteles Mimi</ion-title>
     </ion-toolbar>
   </ion-header>
+<!-- Logo -->
+<div id="logocenter">
+  <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
+</div>
 
-  <div id="logocenter">
-    <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
-  
-
+  <!-- Sección de bienvenida -->
+  <div class="bienvenida">
+    <h2>¡Bienvenidos a Pasteles Mimi!</h2>
+    <p>Descubre los sabores más deliciosos y frescos en nuestra pastelería. ¡Hechos con amor para cada ocasión especial!</p>
   </div>
-    <!-- carrusel -->
-   
-  <!-- cierre de carrusel -->
-   
-   <p>Promociones Pasteles</p>
-  <ion-card>
-    <img  id="centerimg" alt="Silhouette of mountains" src="assets/rosca2.jpg"  />
+
+
+  <!-- Productos Destacados (desplazamiento manual) -->
+  <h2>Productos Destacados</h2>
+  <div class="productos-destacados">
+    <ion-card *ngFor="let producto of productosDestacados">
+      <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" />
       <ion-card-header>
-      <ion-card-title>Pan de Muerto</ion-card-title>
-      <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-     $150.00 c/u
-    </ion-card-content>
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        ${{ producto.precio }} 
+      </ion-card-content>
+      <ion-buttons>
+        <ion-button fill="clear" (click)="anadirAlCarrito(producto)">
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card>
+  </div>
 
-    <ion-button fill="clear" (click)="comprarAhora({ nombre: 'Pan de Muerto', precio: 150 })">
-      Añadir al carrito
-    </ion-button>
-    <ion-button fill="clear" (click)="anadirAlCarrito({ nombre: 'Pan de Muerto', precio: 150 })">
-      Compra ahora
-    </ion-button>
- </ion-card>
+  <!-- Promociones -->
+  <h2>Promociones del día</h2>
 
+  <div class="promociones">
+    <ion-card *ngFor="let promocion of promociones">
+      <img src="{{ promocion.imagen }}" alt="{{ promocion.nombre }}" />
+      <ion-card-header>
+        <ion-card-title>{{ promocion.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ promocion.descripcion }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        ${{ promocion.precio }} c/u
+      </ion-card-content>
+      <ion-buttons>
+        <ion-button fill="clear" (click)="anadirAlCarrito(promocion)">
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card>
+  </div>
 
-
+  <!-- Sección de contacto y ubicación -->
   <ion-card>
-    <img  id="centerimg" alt="Silhouette of mountains" src="assets/nueces.jpg"  />
     <ion-card-header>
-      <ion-card-title>Pan de nuez con chocolate</ion-card-title>
-      <ion-card-subtitle> Solo por hoy llevate pan de muerto a mitad de precio</ion-card-subtitle>
+      <ion-card-title>Visítanos</ion-card-title>
     </ion-card-header>
-  
     <ion-card-content>
-     $99.00 c/u
+      📍 Calle del Sabor #123, Ciudad Pastelera <br />
+      📞 Teléfono: 55-1234-5678 <br />
+      🕒 Horario: 9:00 AM - 7:00 PM
     </ion-card-content>
-
-    <ion-button fill="clear" (click)="comprarAhora({ nombre: 'Pan de nuez con chocolate', precio: 99 })">
-      Añadir al carrito
-    </ion-button>
-    <ion-button fill="clear" (click)="anadirAlCarrito({ nombre: 'Pan de nuez con chocolate', precio: 99 })">
-      Compra ahora
-    </ion-button>
-
   </ion-card>
-  
+
+  <!-- Botón flotante para agregar un nuevo producto
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button class="boton" [routerLink]="'/nuevop'" (click)="nuevop()" >
+    <ion-fab-button class="boton" [routerLink]="'/nuevop'" (click)="nuevop()">
       <ion-icon class="circle" name="add-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
-  
-  
+  </ion-fab> -->
 </ion-content>
+
+

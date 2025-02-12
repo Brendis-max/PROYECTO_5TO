@@ -1,141 +1,169 @@
-ion-icon {
-    font-size: 20px;
-    padding: 2px;
-    color:  #ff3399;;
-  }
-  p{
-  text-align:center;
-  font-family:cursive;
-  color:#f71e71;
-  }
-  .circle{
 
-    font-size: 20px;
-    padding: 2px;
-    color:  #ffffff;
-  }
-  #logocenter{
-    margin-top:80px;
-    text-align: center;
-    left: 0;
-    right: 0;
-    
-    // transform: translateY(-50%);
-  }
-  .logo{
-    justify-content: center;
-    align-items: center;
-    
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-  // .container{
-  //       display: flex;
-  //       justify-content: center;
-  //       align-items: center;
-      
-  //     img{
-  //       height: 20%;
-  //       width: 20%;
-  //       text-align: center;
-  //     }
-  //     .boton{
-  //       background-color: #ff3399;
-  //     }
-  // }
-  // #centerimg{
-  //   align-items: center;
-  //   text-align: center;
-  // }
 
-  /* Tarjetas alineadas correctamente */
-ion-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  // background: white;
+
+/* Fuente global */
+body, ion-content {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff6f9;
+  color: #f81d75;
+}
+
+/* Estilos del header */
+ion-header {
+  --background: linear-gradient(135deg, #dd0d3e, #ffcad4);
+  --color: white;
+}
+
+/* Logo centrado */
+#logocenter {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo {
+  width: 150px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de bienvenida */
+.bienvenida {
+  text-align: center;
+  background: #ffd9e0;
+  color: #ff75ac;
+  padding: 20px;
   border-radius: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h2 {
+  color: #e63946;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Contenedor de productos destacados */
+.productos-destacados {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+/* Cards uniformes */
+.productos-destacados ion-card {
+  flex: 0 0 220px;
+  height: 300px;
+  border-radius: 15px;
+  text-align: center;
+  position: relative; /* Necesario para que el botón se posicione dentro */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  width: 90%;
-  max-width: 350px;
-  margin: 15px auto;
-  padding-bottom: 10px;
+  scroll-snap-align: center;
 }
 
-/* Efecto hover en tarjetas */
-ion-card:hover {
-  transform: scale(1.03);
+.productos-destacados ion-card:hover {
+  transform: scale(1.05);
 }
 
-/* Imágenes dentro de las tarjetas */
-#centerimg {
+/* Ajuste de imágenes dentro de las cards */
+.productos-destacados ion-card img {
   width: 100%;
-  height: 180px;
+  height: 150px;
   object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
 
-/* Títulos y subtítulos dentro de la tarjeta */
-ion-card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
+/* Botón del carrito en la esquina */
+.productos-destacados ion-card ion-buttons {
+  position: absolute;
+  bottom: 10px; /* Espaciado desde abajo */
+  right: 10px; /* Espaciado desde la derecha */
 }
 
-ion-card-subtitle {
-  font-size: 0.9rem;
-  color: #d46a8a;
-}
-
-/* Precio dentro de la tarjeta */
-ion-card-content {
-  font-size: 1.1rem;
-  color: #d46a8a;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Botones dentro de las tarjetas */
-ion-button {
-  --border-radius: 20px;
-  font-weight: bold;
-  width: 90%;
-  margin-bottom: 10px;
-}
-
-/* Estilo para el botón de añadir al carrito */
-ion-button[fill="clear"]:first-of-type {
-  --background: #ff69b4; /* Rosa intenso */
-  --color: white;
-}
-
-ion-button[fill="clear"]:first-of-type:hover {
-  filter: brightness(1.1);
-}
-
-/* Estilo para el botón de compra */
-ion-button[fill="clear"]:last-of-type {
-  --background: #ff4d6d; /* Rojo-rosa */
-  --color: white;
-}
-
-ion-button[fill="clear"]:last-of-type:hover {
-  filter: brightness(1.1);
-}
-
-/* Botón flotante */
-ion-fab-button.boton {
-  --background: #ff69b4;
+.productos-destacados ion-card ion-button {
+  --background: #e63946;
   --color: white;
   --border-radius: 50%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
 }
 
-ion-fab-button.boton:hover {
-  filter: brightness(1.1);
+.productos-destacados ion-card ion-button:hover {
+  transform: scale(1.1);
+}
+/* Contenedor de promociones (igual que productos destacados) */
+.promociones {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+/* Cards uniformes */
+.promociones ion-card {
+  flex: 0 0 220px;
+  height: 320px; /* Aumento de altura para evitar que el precio se corte */
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+  
+  transition: transform 0.3s ease-in-out;
+  scroll-snap-align: center;
+}
+
+/* Ajuste de imágenes dentro de las cards */
+.promociones ion-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* Contenido del precio con margen adicional */
+.promociones ion-card ion-card-content {
+  font-size: 1.2rem; /* Aumenta el tamaño del precio */
+  font-weight: bold;
+  margin-bottom: 40px; /* Agrega más espacio en la parte inferior */
+}
+
+/* Botón del carrito en la esquina */
+.promociones ion-card ion-buttons {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Estilo mejorado para el botón de carrito */
+.promociones ion-card ion-button {
+  --background: #e63946;
+  --color: white;
+  --border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.2s;
+  padding: 0; /* Evita relleno extra que hacía que se viera cuadrado */
+}
+
+/* Asegurar que el icono dentro del botón es circular */
+.promociones ion-card ion-button::part(native) {
+  border-radius: 50%;
+}
+
+.promociones ion-card ion-button:hover {
+  transform: scale(1.1);
 }
