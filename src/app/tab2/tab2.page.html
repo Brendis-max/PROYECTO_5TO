@@ -1,4 +1,4 @@
-<<ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Catalogo</ion-title>
     <ion-buttons slot="end">
@@ -30,26 +30,19 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let product of filteredProducts">
-        <ion-card>
-          <img [alt]="product.title" [src]="product.image" />
+        <ion-card (click)="verDetalles(product)">
+          <img [alt]="product.nombre" [src]="product.imagen" />
           <ion-card-header>
-            <ion-card-title>{{ product.title }}</ion-card-title>
+            <ion-card-title>{{ product.nombre }}</ion-card-title>
             <ion-card-subtitle>{{ product.category }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            <strong>{{ product.price }}</strong>
-
-            <!-- Barra de dulzura -->
-           
+            <strong>{{ product.precio }}</strong>
           </ion-card-content>
 
-          <!-- Botones para agregar o eliminar del carrito -->
-          <ion-button fill="clear" *ngIf="!product.inCart" (click)="comprarAhora(product)" expand="full">
+          <!-- Botones para agregar al carrito -->
+          <ion-button fill="clear" (click)="anadirAlCarrito(product); $event.stopPropagation()">
             Agregar al carrito
-          </ion-button>
-
-          <ion-button fill="clear" *ngIf="product.inCart" (click)="removeFromCart(product)" expand="full">
-            Eliminar del carrito
           </ion-button>
         </ion-card>
       </ion-col>

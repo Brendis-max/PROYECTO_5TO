@@ -134,36 +134,31 @@
     margin-bottom: 10px;
   }
   
-  /* Estilo para el botón de añadir al carrito */
-  ion-button[fill="clear"]:first-of-type {
-    --background: #ff69b4; /* Rosa intenso */
-    --color: white;
-  }
-  
-  ion-button[fill="clear"]:first-of-type:hover {
-    filter: brightness(1.1);
-  }
-  
-  /* Estilo para el botón de compra */
-  ion-button[fill="clear"]:last-of-type {
-    --background: #ff4d6d; /* Rojo-rosa */
-    --color: white;
-  }
-  
-  ion-button[fill="clear"]:last-of-type:hover {
-    filter: brightness(1.1);
-  }
-  
-  /* Botón flotante */
-  ion-fab-button.boton {
-    --background: #ff69b4;
-    --color: white;
-    --border-radius: 50%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  ion-fab-button.boton:hover {
-    filter: brightness(1.1);
-  }
+/* Botón del carrito en la esquina */
+.promociones ion-card ion-buttons {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Estilo mejorado para el botón de carrito */
+.promociones ion-card ion-button {
+  --background: #e63946;
+  --color: white;
+  --border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.2s;
+  padding: 0; /* Evita relleno extra que hacía que se viera cuadrado */
+}
+
+/* Asegurar que el icono dentro del botón es circular */
+.promociones ion-card ion-button::part(native) {
+  border-radius: 50%;
+}
   
   

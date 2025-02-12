@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-nuevop',
   templateUrl: './nuevop.page.html',
@@ -7,6 +9,7 @@ import { NavController } from '@ionic/angular';
   standalone:false
 })
 export class NuevopPage implements OnInit {
+  producto: any;
   pastel = {
     nombre: '',
     tamano: '',
@@ -15,7 +18,22 @@ export class NuevopPage implements OnInit {
     imagen: ''
   };
 
-  constructor(private navController: NavController) { }
+
+
+  constructor(private route: ActivatedRoute,private navController: NavController,private router: Router) { 
+    const navigationState = this.router.getCurrentNavigation()?.extras.state;
+    if (navigationState) {
+      this.producto = navigationState['product'] ?? null;
+    }
+  
+    this.route.queryParams.subscribe(params => {
+      if (params['producto']) {
+        this.producto = JSON.parse(params['producto']);
+        console.log("Producto recibido en NuevopPage:", this.producto);  // Agregar este log
+      }
+    });
+  }
+
   crearPastel() {
     console.log('Pastel creado:', this.pastel);
   }
@@ -33,6 +51,14 @@ export class NuevopPage implements OnInit {
       reader.readAsDataURL(archivo);
     }
    
+  }
+
+  anadirAlCarrito(producto: any) {
+    console.log('Producto añadido al carrito:', producto);
+  }
+
+  hacerPedido() {
+    console.log('Pedido realizado:', this.producto);
   }
   ngOnInit() {
   }

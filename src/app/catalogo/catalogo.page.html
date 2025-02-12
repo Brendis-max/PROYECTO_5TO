@@ -1,45 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      <ion-back-button defaultHref="/tab1"></ion-back-button>
     </ion-buttons>
-    <ion-title>Catalogo</ion-title>
+    <ion-title>Mis compras</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="catalogo()">
+        <ion-icon aria-hidden="true" name="bookmarks-outline"></ion-icon>
+      </ion-button>
+      <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
+      <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Buscador -->
-  <ion-searchbar [(ngModel)]="searchText" (ionInput)="filterProducts()" placeholder="Buscar pasteles..."></ion-searchbar>
+  <ion-list>
+    <!-- Mostrar los productos en el carrito -->
+    <ion-item *ngFor="let producto of productosCarrito" class="producto-item">
+      <img [src]="producto.imagen || 'assets/default-image.jpg'" alt="{{ producto.nombre }}" class="producto-img"/>
+      <ion-label class="producto-info">
+        <h2>{{ producto.nombre }}</h2>
+        <p>Precio: {{ producto.precio }}</p>
+      </ion-label>
+      <ion-button fill="solid" color="danger" (click)="eliminarDelCarrito(producto)" class="eliminar-btn">
+        <ion-icon name="trash-outline"></ion-icon> Eliminar
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
-  <!-- Lista de productos filtrados -->
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let product of filteredProducts">
-        <ion-card>
-          <img [alt]="product.title" [src]="product.image" />
-          <ion-card-header>
-            <ion-card-title>{{ product.title }}</ion-card-title>
-            <ion-card-subtitle>{{ product.subtitle }}</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <strong>{{ product.price }}</strong>
-          </ion-card-content>
-
-          <!-- Botones para agregar o eliminar del carrito -->
-
-          <ion-button  id="estile" fill="clear" *ngIf="!product.inCart" (click)="comprarAhora(product)" expand="full">
-            Agregar al carrito
-          </ion-button>
-                    
-          <ion-button fill="clear" *ngIf="product.inCart" (click)="removeFromCart(product)" expand="full">
-            Eliminar del carrito
-          </ion-button>
-          
-          <!-- <ion-button *ngIf="!product.inCart" (click)="comprarAhora(product)" expand="full">Agregar al carrito</ion-button>
-          
-          <ion-button *ngIf="product.inCart" (click)="removeFromCart(product)" expand="full">Eliminar del carrito</ion-button> --> 
-       </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <!-- Si no hay productos en el carrito -->
+  <div *ngIf="productosCarrito.length === 0" class="no-productos">
+    <p>No hay productos en el carrito.</p>
+  </div>
 </ion-content>

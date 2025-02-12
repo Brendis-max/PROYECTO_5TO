@@ -1,6 +1,3 @@
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Pasteles Mimi</ion-title>
@@ -24,10 +21,11 @@
       <ion-title size="large">Pasteles Mimi</ion-title>
     </ion-toolbar>
   </ion-header>
-<!-- Logo -->
-<div id="logocenter">
-  <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
-</div>
+
+  <!-- Logo -->
+  <div id="logocenter">
+    <img class="logo" src="assets/logo.jpeg" alt="Logo Pasteles Mimi">
+  </div>
 
   <!-- Sección de bienvenida -->
   <div class="bienvenida">
@@ -35,11 +33,10 @@
     <p>Descubre los sabores más deliciosos y frescos en nuestra pastelería. ¡Hechos con amor para cada ocasión especial!</p>
   </div>
 
-
-  <!-- Productos Destacados (desplazamiento manual) -->
+  <!-- Productos Destacados -->
   <h2>Productos Destacados</h2>
   <div class="productos-destacados">
-    <ion-card *ngFor="let producto of productosDestacados">
+    <ion-card *ngFor="let producto of productosDestacados" (click)="verDetalles(producto)">
       <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" />
       <ion-card-header>
         <ion-card-title>{{ producto.nombre }}</ion-card-title>
@@ -48,18 +45,18 @@
         ${{ producto.precio }} 
       </ion-card-content>
       <ion-buttons>
-        <ion-button fill="clear" (click)="anadirAlCarrito(producto)">
+        <ion-button fill="clear" (click)="anadirAlCarrito(producto); $event.stopPropagation()">
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-card>
+    
   </div>
 
   <!-- Promociones -->
   <h2>Promociones del día</h2>
-
   <div class="promociones">
-    <ion-card *ngFor="let promocion of promociones">
+    <ion-card *ngFor="let promocion of promociones" (click)="verDetalles(promocion)">
       <img src="{{ promocion.imagen }}" alt="{{ promocion.nombre }}" />
       <ion-card-header>
         <ion-card-title>{{ promocion.nombre }}</ion-card-title>
@@ -69,11 +66,12 @@
         ${{ promocion.precio }} c/u
       </ion-card-content>
       <ion-buttons>
-        <ion-button fill="clear" (click)="anadirAlCarrito(promocion)">
+        <ion-button fill="clear" (click)="anadirAlCarrito(promocion); $event.stopPropagation()">
           <ion-icon name="cart-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-card>
+    
   </div>
 
   <!-- Sección de contacto y ubicación -->
@@ -87,13 +85,4 @@
       🕒 Horario: 9:00 AM - 7:00 PM
     </ion-card-content>
   </ion-card>
-
-  <!-- Botón flotante para agregar un nuevo producto
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button class="boton" [routerLink]="'/nuevop'" (click)="nuevop()">
-      <ion-icon class="circle" name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
 </ion-content>
-
-

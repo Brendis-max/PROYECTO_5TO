@@ -1,44 +1,91 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      <ion-back-button defaultHref="/tab1"></ion-back-button>
     </ion-buttons>
-    <ion-title>Nuevo Pedido</ion-title> 
+    <ion-title>{{ producto?.nombre }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="crearPastel()">
-    <ion-item>
-      <ion-label position="floating">Nombre del Pastel</ion-label>
-      <ion-input type="text" [(ngModel)]="pastel.nombre" name="nombre" required></ion-input>
-    </ion-item>
+  <!-- Verificación de si el producto está presente -->
+  <div *ngIf="producto">
+    <ion-card>
+      <!-- Mostrar imagen del producto -->
+<img [alt]="producto?.nombre" [src]="producto?.imagen || 'assets/default-image.jpg'" />
 
+      <ion-card-header>
+        <!-- Mostrar título y categoría del producto -->
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+        <ion-card-subtitle>{{ producto.category }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Mostrar precio y dulzura del producto -->
+        <p><strong>Precio:</strong> {{ producto.precio }}</p>
+        <p><strong>Dulzura:</strong> {{ producto.sweetness }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Mensaje en caso de que no haya producto -->
+  <div *ngIf="!producto">
+    <p>Producto no disponible</p>
+  </div>
+
+  <!-- Formulario -->
+  <ion-list>
     <ion-item>
-      <ion-label position="floating">Tamaño</ion-label>
-      <ion-select [(ngModel)]="pastel.tamano" name="tamano" required>
-        <ion-select-option value="chico">Chico</ion-select-option>
-        <ion-select-option value="mediano">Mediano</ion-select-option>
-        <ion-select-option value="grande">Grande</ion-select-option>
+      <ion-label>Tamaño del pastel</ion-label>
+      <ion-select>
+        <ion-select-option>Pequeño</ion-select-option>
+        <ion-select-option>Mediano</ion-select-option>
+        <ion-select-option>Grande</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Sabor</ion-label>
-      <ion-input type="text" [(ngModel)]="pastel.sabor" name="sabor" required></ion-input>
+      <ion-label>Forma del pastel</ion-label>
+      <ion-select>
+        <ion-select-option>Redondo</ion-select-option>
+        <ion-select-option>Cuadrado</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Descripción</ion-label>
-      <ion-textarea [(ngModel)]="pastel.descripcion" name="descripcion"></ion-textarea>
+      <ion-label>Sabor del pan</ion-label>
+      <ion-input></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Imagen</ion-label>
-      <input type="file" (change)="cargarImagen($event)">
+      <ion-label>Relleno</ion-label>
+      <ion-input></ion-input>
     </ion-item>
 
-    <ion-button expand="full" type="submit">Guardar Pastel</ion-button>
-  </form>
+    <ion-item>
+      <ion-label>Decoración</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mensaje en el pastel</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Entrega a domicilio</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botones -->
+  <ion-buttons>
+    <ion-button fill="outline" (click)="anadirAlCarrito(producto)">
+      <ion-icon slot="start" name="cart-outline"></ion-icon> Añadir al carrito
+    </ion-button>
+
+    <ion-button expand="full" (click)="hacerPedido()">
+      Hacer Pedido
+    </ion-button>
+  </ion-buttons>
 </ion-content>

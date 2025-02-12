@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { ProductoService } from '../services/producto.service';
 import { NavController } from '@ionic/angular';
-
+import { NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface Product {
-  title: string;
+  nombre: string;
   category: string;
-  image: string;
-  price: string;
+  imagen: string;
+  precio: string;
   sweetness: number;
   inCart: boolean;
 }
@@ -19,33 +20,34 @@ interface Product {
   standalone: false,
 })
 export class Tab2Page {
+  productosCarrito: any[] = [];
   searchText = '';
   selectedCategory = 'todos';
 
     // Arreglo de productos
     products: Product[] = [
-      { title: 'Cheesecake', category: 'pasteles', image: 'assets/Cheesecake.jpg', price: '$270.00', sweetness: 7, inCart: false },
-      { title: 'Chocoflan', category: 'pan', image: 'assets/Chocoflan.jpg', price: '$300.00', sweetness: 8, inCart: false },
-      { title: 'Cake Rosa', category: 'pan', image: 'assets/coke rosa.jpg', price: '$220.00', sweetness: 6, inCart: false },
-      { title: 'Concha', category: 'pan', image: 'assets/Concha.jpg', price: '$50.00', sweetness: 7, inCart: false },
-      { title: 'Cupcakes', category: 'pasteles', image: 'assets/Cup cakes.jpg', price: '$180.00', sweetness: 8, inCart: false },
-      { title: 'Pastel Princesas', category: 'pasteles', image: 'assets/PRINCESA.jpeg', price: '$2,000.00', sweetness: 7, inCart: false },
-      { title: 'Gelatina de Mosaico', category: 'otros', image: 'assets/Gelatina de mosaico.jpg', price: '$120.00', sweetness: 6, inCart: false },
-      { title: 'Pastel Mexicano', category: 'pasteles', image: 'assets/imagen1.JPG', price: '$250.00', sweetness: 6, inCart: false },
-      { title: 'Nueces', category: 'pan', image: 'assets/nueces.jpg', price: '$150.00', sweetness: 3, inCart: false },
-      { title: 'Pan de Muerto', category: 'pan', image: 'assets/rosca2.jpg', price: '$150.00', sweetness: 6, inCart: false },
-      { title: 'Pastel de Chocolate con Fresas', category: 'pasteles', image: 'assets/PASTEL DE CHOCOLATE CON FRESAS.jpg', price: '$280.00', sweetness: 8, inCart: false },
-      { title: 'Pastel de Tres Leches', category: 'pasteles', image: 'assets/Pastel De Chocolate De Tres Leches.jpg', price: '$250.00', sweetness: 9, inCart: false },
-      { title: 'Pastel de Tiramisú', category: 'pasteles', image: 'assets/Pastel de Tiramisu.jpg', price: '$300.00', sweetness: 7, inCart: false },
-      { title: 'Pastel Mega Chocolate', category: 'pasteles', image: 'assets/PASTEL MEGA CHOCOLATE.jpg', price: '$350.00', sweetness: 10, inCart: false },
-      { title: 'Cupcakes Te Amo', category: 'pasteles', image: 'assets/te amo.jpg', price: '$220.00', sweetness: 8, inCart: false },
-      { title: 'Pastel de Vainilla Tres Leches', category: 'pasteles', image: 'assets/Postel De Vainilla De tres leches.jpg', price: '$240.00', sweetness: 8, inCart: false }
+      { nombre: 'Chocoflan', category: 'pan', imagen: 'assets/Chocoflan.jpg', precio: '$300.00', sweetness: 8, inCart: false },
+      { nombre: 'Cheesecake', category: 'pasteles', imagen: 'assets/Cheesecake.jpg', precio: '$270.00', sweetness: 7, inCart: false },
+      { nombre: 'Cake Rosa', category: 'pan', imagen: 'assets/coke rosa.jpg', precio: '$220.00', sweetness: 6, inCart: false },
+      { nombre: 'Concha', category: 'pan', imagen: 'assets/Concha.jpg', precio: '$50.00', sweetness: 7, inCart: false },
+      { nombre: 'Cupcakes', category: 'pasteles', imagen: 'assets/Cup cakes.jpg', precio: '$180.00', sweetness: 8, inCart: false },
+      { nombre: 'Pastel Princesas', category: 'pasteles', imagen: 'assets/PRINCESA.jpeg', precio: '$2,000.00', sweetness: 7, inCart: false },
+      { nombre: 'Gelatina de Mosaico', category: 'otros', imagen: 'assets/Gelatina de mosaico.jpg', precio: '$120.00', sweetness: 6, inCart: false },
+      {nombre: 'Pastel Mexicano', category: 'pasteles', imagen: 'assets/imagen1.JPG', precio: '$250.00', sweetness: 6, inCart: false },
+      { nombre: 'Nueces', category: 'pan', imagen: 'assets/nueces.jpg', precio: '$150.00', sweetness: 3, inCart: false },
+      { nombre: 'Pan de Muerto', category: 'pan', imagen: 'assets/rosca2.jpg', precio: '$150.00', sweetness: 6, inCart: false },
+      { nombre: 'Pastel de Chocolate con Fresas', category: 'pasteles', imagen: 'assets/PASTEL DE CHOCOLATE CON FRESAS.jpg', precio: '$280.00', sweetness: 8, inCart: false },
+      { nombre: 'Pastel de Tres Leches', category: 'pasteles', imagen: 'assets/Pastel De Chocolate De Tres Leches.jpg', precio: '$250.00', sweetness: 9, inCart: false },
+      { nombre: 'Pastel de Tiramisú', category: 'pasteles', imagen: 'assets/Pastel de Tiramisu.jpg', precio: '$300.00', sweetness: 7, inCart: false },
+      { nombre: 'Pastel Mega Chocolate', category: 'pasteles', imagen: 'assets/PASTEL MEGA CHOCOLATE.jpg', precio: '$350.00', sweetness: 10, inCart: false },
+      { nombre: 'Cupcakes Te Amo', category: 'pasteles', imagen: 'assets/te amo.jpg', precio: '$220.00', sweetness: 8, inCart: false },
+      { nombre: 'Pastel de Vainilla Tres Leches', category: 'pasteles', imagen: 'assets/Postel De Vainilla De tres leches.jpg', precio: '$240.00', sweetness: 8, inCart: false }
     
     ];
   
     filteredProducts: Product[] = [...this.products];
   
-    constructor(private navController: NavController,private productoService: ProductoService) {}
+    constructor(private navController: NavController,private productoService: ProductoService,) {}
   
     ngOnInit() {
       console.log("CatalogoPage cargado correctamente");
@@ -73,7 +75,7 @@ export class Tab2Page {
     }
     filterProducts() {
       this.filteredProducts = this.products.filter(product =>
-        product.title.toLowerCase().includes(this.searchText.toLowerCase())
+        product.nombre.toLowerCase().includes(this.searchText.toLowerCase())
       );
     }
 
@@ -88,41 +90,27 @@ export class Tab2Page {
     comprarAhora(product: Product) {
       product.inCart = true;
     }
-  
+    verDetalles(product: Product) {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          product: product
+        }
+      };
+      this.navController.navigateForward(['/nuevop'], navigationExtras);
+    }
     // removeFromCart(product: Product) {
     //   product.inCart = false;
     // }
-
-    // Agregar producto al carrito
-    addToCart(product: Product) {
-      let cartItems: Product[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
-  
-      // Verificar si el producto ya está en el carrito
-      const productIndex = cartItems.findIndex(item => item.title === product.title);
-      if (productIndex === -1) {
-        cartItems.push({ ...product, inCart: true }); // Usar un nuevo objeto para evitar referencias
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        product.inCart = true;
-      } else {
-        console.log('Este producto ya está en el carrito');
-      }
+    
+    anadirAlCarrito(product: Product) {
+      this.productoService.agregarCarrito(product); // Agregar al carrito
+      console.log("Producto añadido al carrito:", product);
+      this.productosCarrito = this.productoService.obtenerCarrito(); // Actualizar el carrito en la vista
     }
   
-    // Eliminar producto del carrito
-    removeFromCart(product: Product): void {
-      product.inCart = false;
-      let cartItems: Product[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
-  
-      // Buscar el índice del producto en el carrito
-      const productIndex = cartItems.findIndex(item => item.title === product.title);
-      if (productIndex !== -1) {
-        // Eliminar el producto del carrito
-        cartItems.splice(productIndex, 1);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        product.inCart = false;
-      } else {
-        console.log('Este producto no está en el carrito');
-      }
+    eliminarDelCarrito(index: number) {
+      this.productoService.eliminarDelCarrito(index); // Eliminar del carrito por índice
+      this.productosCarrito = this.productoService.obtenerCarrito(); // Actualizar el carrito en la vista
     }
-
+ 
 }

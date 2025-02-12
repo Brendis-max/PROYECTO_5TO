@@ -14,21 +14,21 @@ export class Tab1Page {
     {
       nombre: 'Pan de Muerto',
       descripcion: 'Solo por hoy a mitad de precio',
-      precio: 150,
+      precio: '$150',
       imagen: 'assets/rosca2.jpg'
     },
     {
       nombre: 'Pastel de Chocolate',
       descripcion: 'Descuento especial en porciones individuales',
-      precio: 90,
+      precio: '$90',
       imagen: 'assets/lo mas delicioso.jpg'
     }
   ];
 
   productosDestacados = [
-    { nombre: 'Pastel de Fresa', precio: 250, imagen: 'assets/chocofresa.jpeg' },
-    { nombre: 'Pastel de Chocolate', precio: 300, imagen: 'assets/Pastel De Chocolate De Tres Leches.jpg' },
-    { nombre: 'Rosca de Reyes', precio: 180, imagen: 'assets/rosca.jpeg' }
+    { nombre: 'Pastel de Fresa', precio: '$250', imagen: 'assets/chocofresa.jpeg' },
+    { nombre: 'Pastel de Chocolate', precio: '$300', imagen: 'assets/Pastel De Chocolate De Tres Leches.jpg' },
+    { nombre: 'Rosca de Reyes', precio: '$180', imagen: 'assets/rosca.jpeg' }
   ];
   carrito: any[] = [];
 
@@ -37,12 +37,21 @@ export class Tab1Page {
     private productoService: ProductoService,
     private router: Router
   ) {
+    const navigationState = this.router.getCurrentNavigation()?.extras.state;
+  if (navigationState) {
+    this.promociones = navigationState['promociones'] ?? null;
+    this.productosDestacados = navigationState['productosDestacados'] ?? null;
+ 
+  }
+
+
     console.log("Servicio cargado. Compras:", this.productoService.obtenerCompras());
     console.log("Servicio cargado. Carrito:", this.productoService.obtenerCarrito());
   }
-
   verDetalles(producto: any) {
-    this.router.navigate(['/nuevop'], { queryParams: { producto: JSON.stringify(producto) } });
+    this.navController.navigateForward(['/nuevop'], {
+      state: { product: producto }
+    });
   }
 
   catalogo() {
@@ -63,11 +72,16 @@ export class Tab1Page {
   }
 
   anadirAlCarrito(producto: any) {
+    // Agregar el producto al carrito
     this.productoService.agregarCarrito(producto);
     console.log("Producto añadido al carrito:", producto);
     console.log("Carrito actual:", this.productoService.obtenerCarrito());
-
-    // Redirigir al catálogo después de añadir
-    this.catalogo();
+  
+    // Redirigir al catálogo y pasar los productos en el carrito
+    this.router.navigate(['/catalogo'], {
+      queryParams: {
+        productos: JSON.stringify(this.productoService.obtenerCarrito()) // Envía los productos en el carrito como JSON
+      }
+    });
   }
 }
