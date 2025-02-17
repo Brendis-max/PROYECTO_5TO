@@ -60,7 +60,10 @@ export class Tab1Page {
       queryParams: { productos: JSON.stringify(productosCarrito) }
     });
   }
+  notificaciones(){
 
+    this.router.navigate(['/notificaciones'])
+  }
   nuevop() {
     this.navController.navigateForward('/nuevop');
   }
