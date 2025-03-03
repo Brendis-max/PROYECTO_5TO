@@ -1,14 +1,69 @@
-ion-icon {
-    font-size: 20px;
-    padding: 2px;
-    color:  #ff3399;;
+// .historial-container {
+//   padding: 20px;
+//   background: var(--ion-color-light); /* Fondo rosa crema */
+//   min-height: 100%;
+// }
+
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2em;
+  color: var(--ion-color-secondary); /* Rosa fuerte */
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.historial-card {
+  --background: #FFFFFF;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
-  #container {
-    text-align: center;
-  
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+}
+
+ion-card-title {
+  color: var(--ion-color-dark);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+ion-card-subtitle {
+  color: var(--ion-color-medium);
+}
+
+ion-thumbnail {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+ion-thumbnail img {
+  object-fit: cover;
+}
+
+ion-grid p {
+  color: var(--ion-color-dark);
+  font-family: 'Roboto', sans-serif;
+  margin: 5px 0;
+}
+
+.no-historial {
+  text-align: center;
+  padding: 20px;
+}
+
+.no-historial h3 {
+  color: var(--ion-color-secondary);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8em;
+}
+
+.no-historial p {
+  color: var(--ion-color-medium);
+}

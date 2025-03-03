@@ -1,37 +1,74 @@
 <ion-header>
-  <ion-toolbar>
+  <link href="https://fonts.googleapis.com/css2?family=Borel&family=DM+Serif+Display:ital@0;1&family=Lilita+One&family=Playwrite+HR+Lijeva:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+ 
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalles del Pedido</ion-title>
+    <ion-title>Detalles del Pedido #{{ pedido?.id }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card *ngIf="pedido">
-    <ion-card-header>
-      <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
-      <ion-card-subtitle>Fecha: {{ pedido.fecha }}</ion-card-subtitle>
-    </ion-card-header>
+<ion-content class="ion-padding" [style.background]="pedido?.estado === 'Pagado' ? 'var(--ion-color-success)' : 'var(--ion-color-light)'">
+  <div class="detalle-container" *ngIf="pedido">
+    <!-- Encabezado del pedido -->
+    <ion-card class="pedido-header">
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+        <ion-card-subtitle>{{ pedido.fecha }} | <span [class]="pedido.estado === 'Pagado' ? 'estado-pagado' : 'estado-pendiente'">{{ pedido.estado }}</span></ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
 
-    <ion-card-content>
-      <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+    <!-- Sección de productos -->
+    <ion-card class="productos-card">
+      <ion-card-header>
+        <h2 class="section-title">Productos</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item *ngFor="let producto of pedido.productos" class="producto-item">
+            <ion-thumbnail slot="start">
+              <img [src]="producto.imagen || 'assets/default-image.jpg'" [alt]="producto.nombre" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ producto.nombre }}</h3>
+              <p>{{ producto.precio | currency }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 
-      <h3>Detalles del Producto</h3>
-      <p><strong>Nombre:</strong> {{ pedido.producto?.nombre || 'No disponible' }}</p>
-      <p><strong>Tamaño:</strong> {{ pedido.detalles?.tamano }}</p>
-      <p><strong>Forma:</strong> {{ pedido.detalles?.forma }}</p>
-      <p><strong>Sabor:</strong> {{ pedido.detalles?.sabor }}</p>
-      <p><strong>Relleno:</strong> {{ pedido.detalles?.relleno }}</p>
-      <p><strong>Decoración:</strong> {{ pedido.detalles?.decoracion }}</p>
-      <p><strong>Mensaje:</strong> {{ pedido.detalles?.mensaje }}</p>
-      <p><strong>Entrega:</strong> {{ pedido.detalles?.entrega ? 'Sí' : 'No' }}</p>
+    <!-- Detalles de personalización -->
+    <ion-card class="detalles-card">
+      <ion-card-header>
+        <h2 class="section-title">Personalización</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Tamaño:</strong> {{ pedido.tamano || 'No especificado' }}</p>
+        <p><strong>Forma:</strong> {{ pedido.forma || 'No especificado' }}</p>
+        <p><strong>Sabor:</strong> {{ pedido.sabor || 'No especificado' }}</p>
+        <p><strong>Relleno:</strong> {{ pedido.relleno || 'No especificado' }}</p>
+        <p><strong>Decoración:</strong> {{ pedido.decoracion || 'No especificado' }}</p>
+        <p><strong>Mensaje:</strong> {{ pedido.mensaje || 'Sin mensaje' }}</p>
+         </ion-card-content>
+    </ion-card>
 
-      <ion-button expand="full" color="primary" (click)="regresar()">Volver</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <!-- Total -->
+    <ion-card class="total-card">
+      <ion-card-content>
+        <h3><strong>Total:</strong> {{ pedido.total | currency }}</h3>
+      </ion-card-content>
+    </ion-card>
 
-  <div *ngIf="!pedido" class="no-pedido">
-    <p>No se encontraron detalles para este pedido.</p>
+    <!-- Botón de regresar -->
+    <ion-button expand="full" color="secondary" (click)="regresar()">Volver a Mis Pedidos</ion-button>
+  </div>
+
+  <!-- Mensaje si no hay pedido -->
+  <div class="no-pedido" *ngIf="!pedido">
+    <h3>No se encontraron detalles</h3>
+    <p>Regresa para ver tus pedidos.</p>
+    <ion-button color="medium" (click)="regresar()">Volver</ion-button>
   </div>
 </ion-content>

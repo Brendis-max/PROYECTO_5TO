@@ -1,5 +1,6 @@
 
-
+<link href="https://fonts.googleapis.com/css2?family=Borel&family=DM+Serif+Display:ital@0;1&family=Lilita+One&family=Playwrite+HR+Lijeva:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+ 
 <ion-content class="ion-padding">
 
   <div id="logocenter">
@@ -7,7 +8,8 @@
   </div>
 
   <form #loginForm="ngForm" (ngSubmit)="login()">
-    <strong id="title">Iniciar sesion</strong>
+    <h2 class="section-title">Iniciar sesion</h2>
+    
     <ion-item>
       <ion-label position="floating">Correo Electrónico</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
@@ -19,6 +21,6 @@
     </ion-item>
 
     <ion-button expand="block" type="submit">Iniciar Sesión</ion-button>
-    <ion-button color="medium" expand="block" (click)="goToRegister()">Registrarse</ion-button>
+    <ion-button class="botonr" expand="block" (click)="goToRegister()">Registrarse</ion-button>
   </form>
 </ion-content>

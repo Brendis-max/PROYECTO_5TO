@@ -11,7 +11,7 @@ import { NavController } from '@ionic/angular';
 export class DetallePedidoPage implements OnInit {
   pedido: any;
 
-  constructor(private route: ActivatedRoute, private navController: NavController) { }
+  constructor(private route: ActivatedRoute, private navController: NavController) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -22,9 +22,7 @@ export class DetallePedidoPage implements OnInit {
     });
   }
 
-
   regresar() {
     this.navController.back();
   }
-
 }

@@ -1,19 +1,58 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar >
+    
     <ion-title>Historial</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="catalogo()">
-        <ion-icon aria-hidden="true" name="cart-outline"></ion-icon>
+        <ion-icon name="cart-outline"></ion-icon>
       </ion-button>
-      <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
-      <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      <ion-button (click)="verNotificaciones()">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
- 
-  <div id="container">
-    <img class="logo" src="assets/reloj.png" alt="Logo Pasteles Mimi" width="120px"  height="120px"> 
+<ion-content class="ion-padding">
+  <div class="historial-container">
+    <!-- Título -->
+    <h1 class="section-title">Tu Historial Dulce</h1>
+
+    <!-- Lista de pedidos completados -->
+    <ion-list>
+      <ion-card *ngFor="let pedido of historialPedidos" class="historial-card" (click)="verDetallePedido(pedido)">
+        <ion-card-header>
+          <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+          <ion-card-subtitle>{{ pedido.fecha }} | {{ pedido.estado }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <!-- Imagen del primer producto -->
+              <ion-col size="4">
+                <ion-thumbnail>
+                  <img [src]="pedido.productos[0]?.imagen || 'assets/default-image.jpg'" [alt]="pedido.productos[0]?.nombre" />
+                </ion-thumbnail>
+              </ion-col>
+              <!-- Resumen -->
+              <ion-col size="8">
+                <p><strong>Productos:</strong> {{ getProductosNombres(pedido) }}</p>
+                <p><strong>Total:</strong> {{ pedido.total | currency }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <!-- Mensaje si no hay historial -->
+    <div *ngIf="historialPedidos.length === 0" class="no-historial">
+      <h3>¡Aún no tienes historial!</h3>
+      <p>Haz un pedido y aparecerá aquí una vez completado.</p>
+      <ion-button color="secondary" (click)="catalogo()">Explorar Catálogo</ion-button>
+    </div>
   </div>
 </ion-content>

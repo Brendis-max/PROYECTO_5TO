@@ -1,5 +1,13 @@
 
 
+.section-title {
+  font-family: "Playwrite HR Lijeva", cursive;
+  font-size: 2em;
+  color: var(--ion-color-secondary); /* Rosa fuerte */
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
 
 /* Fuente global */
 body, ion-content {
@@ -10,7 +18,7 @@ body, ion-content {
 
 /* Estilos del header */
 ion-header {
-  --background: linear-gradient(135deg, #dd0d3e, #ffcad4);
+  --background: linear-gradient(135deg, #dd0d6e, #ffcad4);
   --color: white;
 }
 
@@ -39,7 +47,7 @@ ion-header {
 
 /* Títulos */
 h2 {
-  color: #e63946;
+  color: #dd0d6e;
   font-weight: bold;
   text-align: center;
 }
@@ -86,7 +94,7 @@ h2 {
 }
 
 .productos-destacados ion-card ion-button {
-  --background: #e63946;
+  --background: #dd0d6e;
   --color: white;
   --border-radius: 50%;
   width: 40px;
@@ -146,7 +154,7 @@ h2 {
 
 /* Estilo mejorado para el botón de carrito */
 .promociones ion-card ion-button {
-  --background: #e63946;
+  --background: #dd0d6e;
   --color: white;
   --border-radius: 50%;
   width: 45px;

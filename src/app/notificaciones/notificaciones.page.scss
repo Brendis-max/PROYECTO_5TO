@@ -1,0 +1,83 @@
+// .notifications-container {
+  
+//   }
+  
+  .section-title {
+    font-family: "Playwrite HR Lijeva", cursive;
+    font-size: 2em;
+    color: var(--ion-color-secondary); /* Rosa fuerte */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notification-item {
+    --background: #FFFFFF;
+    --border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  
+    &.read {
+      --background: var(--ion-color-tertiary); /* Rosa pálido para leídas */
+      opacity: 0.8;
+    }
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  ion-avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  ion-avatar img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  ion-label {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  h3 {
+    color: var(--ion-color-dark); /* Rosa oscuro */
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  p {
+    color: var(--ion-color-medium); /* Rosa medio */
+    font-size: 0.9em;
+  }
+  
+  .timestamp {
+    display: block;
+    font-size: 0.8em;
+    color: var(--ion-color-tertiary-contrast); /* Gris oscuro */
+    margin-top: 5px;
+  }
+  
+  ion-button {
+    --color: var(--ion-color-danger); /* Rosa apagado para cerrar */
+  }
+  
+  .no-notifications {
+    --background: transparent;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .no-notifications h3 {
+    color: var(--ion-color-secondary);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+  }
+  
+  .no-notifications p {
+    color: var(--ion-color-medium);
+  }

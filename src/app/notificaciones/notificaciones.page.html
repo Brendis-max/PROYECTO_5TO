@@ -1,16 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <link href="https://fonts.googleapis.com/css2?family=Borel&family=DM+Serif+Display:ital@0;1&family=Lilita+One&family=Playwrite+HR+Lijeva:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tab1"></ion-back-button>
     </ion-buttons>
-    <ion-title>notificaciones</ion-title>
+    <ion-title>Notificaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">notificaciones</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="notifications-container">
+    <!-- Título de bienvenida -->
+    <h2 class="section-title">Tus Dulces Noticias</h2>
+
+    <!-- Lista de notificaciones -->
+    <ion-list>
+      <ion-item *ngFor="let notification of notifications" class="notification-item" [class.read]="notification.read" (click)="markAsRead(notification)">
+        <ion-avatar slot="start">
+          <img [src]="notification.icon" alt="Icono de notificación">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ notification.title }}</h3>
+          <p>{{ notification.message }}</p>
+          <span class="timestamp">{{ notification.timestamp | date:'short' }}</span>
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="dismissNotification(notification, $event)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <!-- Mensaje si no hay notificaciones -->
+      <ion-item *ngIf="notifications.length === 0" class="no-notifications">
+        <ion-label>
+          <h3>¡Todo al día!</h3>
+          <p>No tienes notificaciones nuevas por ahora.</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

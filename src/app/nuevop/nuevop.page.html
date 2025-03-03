@@ -8,33 +8,25 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Verificación de si el producto está presente -->
   <div *ngIf="producto">
     <ion-card>
-      <!-- Mostrar imagen del producto -->
-<img [alt]="producto?.nombre" [src]="producto?.imagen || 'assets/default-image.jpg'" />
-
+      <img [alt]="producto?.nombre" [src]="producto?.imagen || 'assets/default-image.jpg'" />
       <ion-card-header>
-        <!-- Mostrar título y categoría del producto -->
         <ion-card-title>{{ producto.nombre }}</ion-card-title>
         <ion-card-subtitle>{{ producto.category }}</ion-card-subtitle>
       </ion-card-header>
-
       <ion-card-content>
-        <!-- Mostrar precio y dulzura del producto -->
-        <p><strong>Precio:</strong> {{ producto.precio }}</p>
+        <p><strong>Precio:</strong> {{ producto.precio | currency }}</p>
         <p><strong>Dulzura:</strong> {{ producto.sweetness }}</p>
       </ion-card-content>
     </ion-card>
   </div>
 
-  <!-- Mensaje en caso de que no haya producto -->
   <div *ngIf="!producto">
     <p>Producto no disponible</p>
   </div>
 
-  <!-- Formulario -->
- 
+  <!-- Formulario de pedido -->
   <ion-list>
     <ion-item>
       <ion-label>Tamaño del pastel</ion-label>
@@ -44,7 +36,6 @@
         <ion-select-option value="Grande">Grande</ion-select-option>
       </ion-select>
     </ion-item>
-  
     <ion-item>
       <ion-label>Forma del pastel</ion-label>
       <ion-select [(ngModel)]="pedido.forma">
@@ -72,26 +63,24 @@
       <ion-label>Mensaje en el pastel</ion-label>
       <ion-input [(ngModel)]="pedido.mensaje"></ion-input>
     </ion-item>
-  
-    <ion-item>
-      <ion-label>Entrega a domicilio</ion-label>
-      <ion-toggle [(ngModel)]="pedido.entrega"></ion-toggle>
-    </ion-item>
-  </ion-list>
-  
-  <!-- Botón para enviar el pedido -->
-  <ion-button expand="full" (click)="hacerPedido()">
-    Hacer Pedido
-  </ion-button>
-  
-  <!-- Botones -->
-  <!-- <ion-buttons>
-    <ion-button fill="outline" (click)="anadirAlCarrito(producto)">
-      <ion-icon slot="start" name="cart-outline"></ion-icon> Añadir al carrito
-    </ion-button>
 
-    <ion-button expand="full" (click)="hacerPedido()">
-      Hacer Pedido
-    </ion-button>
-  </ion-buttons> -->
+
+  </ion-list>
+<!-- Recomendaciones -->
+<h2 class="section-title">Te recomendamos</h2>
+<ion-list>
+  <ion-item *ngFor="let recomendado of recomendaciones" (click)="agregarRecomendado(recomendado)">
+    <ion-thumbnail slot="start">
+      <img [src]="recomendado.imagen || 'assets/default-image.jpg'" />
+    </ion-thumbnail>
+    <ion-label>
+      <h3>{{ recomendado.nombre }}</h3>
+      <p>{{ recomendado.precio | currency }}</p>
+    </ion-label>
+    <ion-button slot="end" fill="outline">Añadir</ion-button>
+  </ion-item>
+</ion-list>
+  <!-- Botones -->
+  <!-- <ion-button expand="full" (click)="hacerPedido()">Hacer Pedido</ion-button> -->
+  <ion-button expand="full" color="secondary" (click)="procederAlPago()">Pagar Ahora</ion-button>
 </ion-content>

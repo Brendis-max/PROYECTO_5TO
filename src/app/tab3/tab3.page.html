@@ -1,30 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Mis pedidos</ion-title>
+    <ion-title>Mis Pedidos</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="catalogo()">
-        <ion-icon aria-hidden="true" name="cart-outline"></ion-icon>
+        <ion-icon name="cart-outline"></ion-icon>
       </ion-button>
-      <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
-      <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      <ion-button (click)="verNotificaciones()">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-item *ngFor="let pedido of pedidos">
-      <ion-label>
-        <h2>Pedido #{{ pedido.id }}</h2>
-        <p>Fecha: {{ pedido.fecha }}</p>
-        <p>Estado: {{ pedido.estado }}</p>
-        <p>Producto: {{ pedido.producto?.nombre || 'Sin nombre' }}</p>
-      </ion-label>
-      <ion-button (click)="verDetallePedido(pedido)" color="primary">Ver Detalles</ion-button>
-    </ion-item>
+    <ion-card *ngFor="let pedido of pedidos" class="pedido-card">
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+        <ion-card-subtitle>{{ pedido.fecha }} - {{ pedido.estado }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Total:</strong> {{ pedido.total | currency }}</p>
+        <p><strong>Productos:</strong> {{ getProductosNombres(pedido) }}</p>
+ 
+      </ion-card-content>
+      <ion-button expand="full" (click)="verDetallePedido(pedido)">Ver Detalles</ion-button>
+    </ion-card>
   </ion-list>
 
   <div *ngIf="pedidos.length === 0" class="no-pedidos">
-    <p>No hay pedidos aún.</p>
+    <h3>¡Aún no tienes pedidos!</h3>
+    <p>Explora nuestro catálogo y haz tu primer pedido.</p>
+    <ion-button (click)="catalogo()">Ir al Catálogo</ion-button>
   </div>
 </ion-content>

@@ -39,11 +39,14 @@
           <ion-card-content>
             <strong>{{ product.precio }}</strong>
           </ion-card-content>
+          <br>
 
-          <!-- Botones para agregar al carrito -->
-          <ion-button fill="clear" (click)="anadirAlCarrito(product); $event.stopPropagation()">
-            Agregar al carrito
-          </ion-button>
+          <!-- Botón ajustado para ser igual al de tab1 -->
+          <ion-buttons>
+            <ion-button fill="clear" (click)="anadirAlCarrito(product); $event.stopPropagation()">
+              <ion-icon name="cart-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </ion-card>
       </ion-col>
     </ion-row>

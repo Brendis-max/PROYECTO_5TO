@@ -112,5 +112,7 @@ export class Tab2Page {
       this.productoService.eliminarDelCarrito(index); // Eliminar del carrito por índice
       this.productosCarrito = this.productoService.obtenerCarrito(); // Actualizar el carrito en la vista
     }
- 
+    notificaciones() {
+      this.navController.navigateForward('/notificaciones');
+    }
 }
