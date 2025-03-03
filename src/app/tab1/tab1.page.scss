@@ -175,3 +175,21 @@ h2 {
 .promociones ion-card ion-button:hover {
   transform: scale(1.1);
 }
+/* Estilos para la sección Visítanos con mapa */
+.visitanos-card {
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.visitanos-card ion-card-content {
+  padding: 15px;
+  font-family: "Poppins", sans-serif;
+  color: #f81d75;
+}
+
+.mapa-container {
+  margin-top: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

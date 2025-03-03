@@ -108,6 +108,11 @@ import jsPDF from 'jspdf';
       doc.text(`Total: $${pedido.total}`, 20, 140 + pedido.productos.length * 10);
       doc.save(`recibo-pedido-${pedido.id}.pdf`);
     }
+
+
+
+
+    
     recomendaciones = [
       { nombre: 'Pastel de Chocolate', precio: 20, imagen: 'assets/chocofresa.jpeg' },
       { nombre: 'Cupcakes de Fresa', precio: 15, imagen: 'assets/coke rosa.jpg' },
