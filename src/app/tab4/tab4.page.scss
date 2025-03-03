@@ -27,9 +27,8 @@
 }
 
 ion-card-title {
-  color: var(--ion-color-dark);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  color: var(--ion-color-secondary);
+  font-family: 'Dancing Script', cursive;
 }
 
 ion-card-subtitle {
@@ -61,9 +60,5 @@ ion-grid p {
 .no-historial h3 {
   color: var(--ion-color-secondary);
   font-family: 'Dancing Script', cursive;
-  font-size: 1.8em;
 }
 
-.no-historial p {
-  color: var(--ion-color-medium);
-}
