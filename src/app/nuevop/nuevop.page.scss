@@ -28,4 +28,11 @@
   ion-item {
     margin-bottom: 10px;
   }
-  
+
+.custom-alert {
+  .alert-message {
+    padding: 0;
+    max-height: 450px; /* Ajusta la altura máxima según necesites */
+    overflow: auto;
+  }
+}

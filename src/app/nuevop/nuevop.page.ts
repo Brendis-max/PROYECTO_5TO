@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PedidoService } from '../services/pedido.service';
 import jsPDF from 'jspdf'; // Importar jsPDF completo
 import autoTable from 'jspdf-autotable'; // Importar autoTable como función
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+
 @Component({
   selector: 'app-nuevop',
   templateUrl: './nuevop.page.html',
@@ -28,7 +30,8 @@ import autoTable from 'jspdf-autotable'; // Importar autoTable como función
       private navController: NavController,
       private router: Router,
       private pedidoService: PedidoService,
-      private alertCtrl: AlertController
+      private alertCtrl: AlertController,
+
     ) {
       const navigationState = this.router.getCurrentNavigation()?.extras.state;
       if (navigationState) {
@@ -169,28 +172,43 @@ import autoTable from 'jspdf-autotable'; // Importar autoTable como función
 const pdfBase64 = doc.output('datauristring'); // Genera una URL de datos (Base64)
 
 // Mostrar mensaje con opción de ver el PDF
-const alert = await this.alertCtrl.create({
-  header: 'Recibo Generado',
-  message: `El recibo para el pedido #${pedido.id || 'N/A'} está listo. ¿Deseas verlo?`,
-  buttons: [
-    {
-      text: 'Ver PDF',
-      handler: () => {
-        // Abrir el PDF directamente con la URL Base64
-        window.open(pdfBase64, '_blank');
-      }
-    },
-    {
-      text: 'Cerrar',
-      role: 'cancel'
-    }
-  ]
-});
-await alert.present();
+const pdfOutput = doc.output('blob'); // Obtener el PDF como Blob
+const fileName = `recibo-pedido-${pedido.id || 'sin-id'}.pdf`;
 
-// Guardar el PDF (opcional, sigue descargándose)
-doc.save(`recibo-pedido-${pedido.id || 'sin-id'}.pdf`);
+const reader = new FileReader();
+reader.onloadend = async () => {
+  const pdfBase64 = reader.result?.toString().split(',')[1]; // Extraer solo la parte Base64
+
+  try {
+    await Filesystem.writeFile({
+      path: fileName,
+      data: pdfBase64!,
+      directory: Directory.Documents, // Guardar en la carpeta Documentos
+      recursive: true
+    });
+
+    const alert = await this.alertCtrl.create({
+      header: 'Recibo Generado',
+      message: `El recibo para el pedido #${pedido.id || 'N/A'} ha sido guardado en la carpeta Documentos como "${fileName}".`,
+      buttons: [{ text: 'Aceptar', role: 'cancel' }]
+    });
+    await alert.present();
+
+  } catch (error) {
+    console.error('Error al guardar el PDF:', error);
+    const alert = await this.alertCtrl.create({
+      header: 'Error',
+      message: 'No se pudo guardar el recibo. Por favor, intenta de nuevo.',
+      buttons: [{ text: 'Aceptar', role: 'cancel' }]
+    });
+    await alert.present();
+  }
+};
+reader.readAsDataURL(pdfOutput); // Convertir Blob a Base64
 }
+
+
+
 recomendaciones = [
   { nombre: 'Pastel de Chocolate', precio: 20, imagen: 'assets/chocofresa.jpeg' },
   { nombre: 'Cupcakes de Fresa', precio: 15, imagen: 'assets/coke rosa.jpg' },

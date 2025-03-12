@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   standalone:false
 })
 export class LoginPage {
+  passwordVisible = false;
+
   email: string = '';
   password: string = '';
 
@@ -30,7 +32,11 @@ export class LoginPage {
       alert('Correo o contraseña incorrectos.');
     }
   }
-
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const input = document.querySelector('ion-input[name="password"]') as HTMLIonInputElement;
+    input.type = this.passwordVisible ? 'text' : 'password';
+  }
   goToRegister() {
     this.router.navigate(['/register']);
   }

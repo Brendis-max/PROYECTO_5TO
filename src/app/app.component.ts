@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  public appPages = [
+    { title: 'Inicio con Google', url: '/google-login', icon: 'logo-google' },
+    { title: 'Inicio con Red Social', url: '/social-login', icon: 'share-social' },
+    { title: 'Escanear QR/Barras', url: '/qr-scanner', icon: 'scan' },
+    { title: 'Cambiar Foto Perfil', url: '/profile-pic', icon: 'camera' },
+    { title: 'Pago con PayPal', url: '/paypal', icon: 'cash' },
+  ];
 }

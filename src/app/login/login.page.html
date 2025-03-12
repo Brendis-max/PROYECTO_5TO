@@ -11,16 +11,28 @@
     <h2 class="section-title">Iniciar sesion</h2>
     
     <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
+     
+      <ion-label position="floating" > <ion-icon slot="start" name="person-outline" class="input-icon" style="color: #ea2976;;"></ion-icon>
+        Correo Electrónico</ion-label>
       <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+      
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+     
+      <ion-label position="floating"> <ion-icon slot="start" name="lock-closed" class="input-icon" style="color: #ea2976;"></ion-icon>
+        Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password" required>
+        
+      </ion-input>
+      
     </ion-item>
 
     <ion-button expand="block" type="submit">Iniciar Sesión</ion-button>
     <ion-button class="botonr" expand="block" (click)="goToRegister()">Registrarse</ion-button>
   </form>
 </ion-content>
+
+
+
+
