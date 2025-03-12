@@ -46,6 +46,9 @@ export class CatalogoPage implements OnInit {
   notificaciones() {
   this.navController.navigateForward('/notificaciones'); //  la ruta de catalogo
 }
+more(){
+  this.navController.navigateForward('/more-page');
+}
   ionViewWillEnter() {
     this.compras = this.productoService.obtenerCompras();
   }

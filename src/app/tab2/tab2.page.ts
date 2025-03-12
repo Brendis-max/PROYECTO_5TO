@@ -73,6 +73,10 @@ export class Tab2Page {
     catalogo() {
       this.navController.navigateForward('/catalogo'); //  la ruta de catalogo
     }
+    more(){
+      this.navController.navigateForward('/more-page'); //  la ruta de more
+
+    }
     filterProducts() {
       this.filteredProducts = this.products.filter(product =>
         product.nombre.toLowerCase().includes(this.searchText.toLowerCase())

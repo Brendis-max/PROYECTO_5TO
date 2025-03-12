@@ -9,7 +9,7 @@
       <ion-button (click)="notificaciones()">
         <ion-icon aria-hidden="true" name="notifications-outline"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (click)="more()">
         <ion-icon aria-hidden="true" name="ellipsis-vertical-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -25,7 +25,7 @@
         <h2>{{ producto.nombre }}</h2>
         <p>Precio: {{ producto.precio }}</p>
       </ion-label>
-      <ion-button fill="solid" color="danger" (click)="eliminarDelCarrito(producto)" class="eliminar-btn">
+      <ion-button fill="solid" style="color:#fdfdfd;" (click)="eliminarDelCarrito(producto)" class="eliminar-btn">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-item>

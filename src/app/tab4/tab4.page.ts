@@ -42,8 +42,12 @@ export class Tab4Page implements OnInit {
   catalogo() {
     this.navController.navigateForward('/catalogo');
   }
+  
 
   verNotificaciones() {
     this.navController.navigateForward('/notificaciones');
+  }
+  more() {
+    this.navController.navigateForward('/more-page');
   }
 }

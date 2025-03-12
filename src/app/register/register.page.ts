@@ -27,22 +27,46 @@ export class RegisterPage {
       return;
     }
 
-    // Verificar si el usuario ya está registrado
-    const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-    if (existingUsers.some((user: any) => user.email === this.email)) {
-      alert('Este correo ya está registrado.');
-      return;
-    }
+  //   // Verificar si el usuario ya está registrado
+  //   const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+  //   if (existingUsers.some((user: any) => user.email === this.email)) {
+  //     alert('Este correo ya está registrado.');
+  //     return;
+  //   }
 
-    // Guardar usuario en localStorage
-    existingUsers.push({ email: this.email, password: this.password });
-    localStorage.setItem('users', JSON.stringify(existingUsers));
+  //   // Guardar usuario en localStorage
+  //   existingUsers.push({ email: this.email, password: this.password });
+  //   localStorage.setItem('users', JSON.stringify(existingUsers));
 
-    alert('Registro exitoso. Ahora puedes iniciar sesión.');
-    this.router.navigate(['/login']); // Redirigir a Login
-  }
+  //   alert('Registro exitoso. Ahora puedes iniciar sesión.');
+  //   this.router.navigate(['/login']); // Redirigir a Login
+  // }
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
+  // goToLogin() {
+  //   this.router.navigate(['/login']);
+  // }
+ // Obtener los usuarios existentes
+ 
+ const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+ if (existingUsers.some((user: any) => user.email === this.email)) {
+   alert('Este correo ya está registrado.');
+   return;
+ }
+
+ const newUser = {
+   nombre: this.nombre,
+   usuario: this.usuario,
+   email: this.email,
+   password: this.password
+ };
+ existingUsers.push(newUser);
+ localStorage.setItem('users', JSON.stringify(existingUsers));
+
+ alert('Registro exitoso. Ahora puedes iniciar sesión.');
+ this.router.navigate(['/login']);
+}
+
+goToLogin() {
+ this.router.navigate(['/login']);
+}
 }

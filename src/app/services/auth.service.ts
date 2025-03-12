@@ -8,6 +8,11 @@ interface User {
   providedIn: 'root'
 })
 export class AuthService {
+  private currentUser: any = null; // Almacena el objeto completo del usuario
+
+  private usuarioActual: string | null = null; // Almacena el email o nombre del usuario autenticado
+  private ultimoAcceso: string | null = null;
+
   private users: User[] = [];
   constructor() { }
 
@@ -24,9 +29,50 @@ export class AuthService {
     return this.users.some(user => user.email === email);
   }
 
-  // Método de inicio de sesión
   login(email: string, password: string): boolean {
-    const user = this.users.find(user => user.email === email && user.password === password);
-    return !!user;
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find((u: any) => u.email === email && u.password === password);
+
+    if (user) {
+      this.currentUser = user; // Guarda el objeto completo
+      this.currentUser.ultimoAcceso = new Date().toLocaleString(); // Actualiza el último acceso
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      return true;
+    }
+    return false;
+  }
+
+  getCurrentUser(): any {
+    if (!this.currentUser) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    }
+    return this.currentUser;
+  }
+
+  logout() {
+    this.currentUser = null;
+    localStorage.removeItem('currentUser');
+  }
+
+  estaAutenticado(): boolean {
+    return !!this.getCurrentUser().email;
+  }
+
+  // Método para actualizar la contraseña
+  updatePassword(newPassword: string): boolean {
+    if (!this.currentUser) return false;
+
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const userIndex = users.findIndex((u: any) => u.email === this.currentUser.email);
+
+    if (userIndex !== -1) {
+      users[userIndex].password = newPassword;
+      this.currentUser.password = newPassword;
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      return true;
+    }
+    return false;
   }
 }
+

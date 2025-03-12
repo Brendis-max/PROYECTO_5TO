@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginPage {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login() {
     if (!this.email || !this.password) {
@@ -22,6 +23,7 @@ export class LoginPage {
     }
 
     // Obtener los usuarios registrados
+    const loginExitoso = this.authService.login(this.email, this.password);
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find((u: any) => u.email === this.email && u.password === this.password);
 
@@ -32,11 +34,7 @@ export class LoginPage {
       alert('Correo o contraseña incorrectos.');
     }
   }
-  togglePasswordVisibility() {
-    this.passwordVisible = !this.passwordVisible;
-    const input = document.querySelector('ion-input[name="password"]') as HTMLIonInputElement;
-    input.type = this.passwordVisible ? 'text' : 'password';
-  }
+ 
   goToRegister() {
     this.router.navigate(['/register']);
   }

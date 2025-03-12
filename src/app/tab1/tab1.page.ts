@@ -64,6 +64,9 @@ export class Tab1Page {
 
     this.router.navigate(['/notificaciones'])
   }
+  more(){
+    this.router.navigate(['/more-page'])
+  }
   nuevop() {
     this.navController.navigateForward('/nuevop');
   }
