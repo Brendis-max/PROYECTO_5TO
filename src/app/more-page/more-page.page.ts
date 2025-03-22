@@ -21,13 +21,14 @@ export class MorePagePage implements OnInit {
   ngOnInit() {
     this.cargarDatosUsuario();
   }
-
+ 
+    
   cargarDatosUsuario() {
     const user = this.authService.getCurrentUser();
-    this.nombre = user.nombre ?? 'No disponible';
-    this.usuario = user.usuario ?? 'No disponible';
-    this.email = user.email ?? 'No disponible';
-    this.ultimoAcceso = user.ultimoAcceso ?? 'No registrado';
+    this.nombre = user.nombre;
+    this.usuario = user.usuario;
+    this.email = user.email;
+    this.ultimoAcceso = user.ultimoAcceso;
   }
 
   cerrarSesion() {
@@ -35,25 +36,8 @@ export class MorePagePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  cambiarContrasena() {
-    if (!this.newPassword || !this.confirmNewPassword) {
-      alert('Por favor, ingrese la nueva contraseña y confírmela.');
-      return;
-    }
-
-    if (this.newPassword !== this.confirmNewPassword) {
-      alert('Las contraseñas no coinciden.');
-      return;
-    }
-
-    const exito = this.authService.updatePassword(this.newPassword);
-    if (exito) {
-      alert('Contraseña cambiada exitosamente.');
-      this.newPassword = '';
-      this.confirmNewPassword = '';
-    } else {
-      alert('Error al cambiar la contraseña.');
-    }
+  irACambiarContrasena() {
+    this.router.navigate(['/cambiarp']); // Redirige a la página de cambio de contraseña
   }
 
 

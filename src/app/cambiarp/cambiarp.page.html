@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/more"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cambiar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+  
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Nueva Contraseña</ion-label>
+          <ion-input [(ngModel)]="newPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Confirmar Nueva Contraseña</ion-label>
+          <ion-input [(ngModel)]="confirmNewPassword" type="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-button expand="block" (click)="cambiarContrasena()">Cambiar Contraseña</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-button expand="block" color="medium" (click)="cancelar()">Cancelar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

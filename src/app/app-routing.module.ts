@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./more-page/more-page.module').then( m => m.MorePagePageModule)
   },
   {
+    path: 'cambiarp',
+    loadChildren: () => import('./cambiarp/cambiarp.module').then( m => m.CambiarpPageModule)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
@@ -43,6 +47,8 @@ const routes: Routes = [
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
   },
+ 
+
  
 
  
