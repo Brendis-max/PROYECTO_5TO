@@ -1,0 +1,87 @@
+// profile.page.scss
+ion-content {
+    --background: linear-gradient(135deg, #fff0f500rgba(255, 209, 220, 0)DC);
+  
+    ion-card {
+      max-width: 500px;
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+  
+      ion-card-header {
+        padding-bottom: 0;
+  
+        ion-card-title {
+          font-family: "Playwrite HR Lijeva", cursive;
+          font-size: 2em;
+          color: #FF69B4;
+          text-align: center;
+          font-size: 2rem;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+      }
+  
+      ion-card-content {
+        padding: 20px;
+  
+        ion-list {
+          background: transparent;
+  
+          ion-item {
+            --background: transparent;
+            --border-color: #FFB6C1;
+            --border-radius: 8px;
+            margin-bottom: 10px;
+  
+            ion-label {
+              font-family: 'Quicksand', sans-serif;
+              color: #FF69B4;
+              font-weight: 500;
+              font-size: 1.1rem;
+            }
+  
+            ion-text {
+              font-family: 'Poppins', sans-serif;
+              color: #333;
+              font-size: 1rem;
+            }
+          }
+        }
+  
+        ion-button[color="medium"] {
+            --background: #FFB6C1;
+            --color: #333;
+            --background-activated: #FFA1B5;
+            --border-radius: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: none;
+          
+  
+          &:last-child {
+            --background: #FFB6C1;
+            --background-activated: #FFA1B5;
+          }
+        }
+      }
+    }
+  }
+  
+  
+  
+  // Responsive design
+  @media (max-width: 480px) {
+    ion-card {
+      margin: 15px;
+    }
+  
+    ion-card-title {
+      font-size: 1.8rem;
+    }
+  
+    ion-card-content {
+      padding: 15px;
+    }
+  }

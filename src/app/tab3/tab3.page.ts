@@ -37,7 +37,7 @@ export class Tab3Page implements OnInit{
   }
 
   catalogo() {
-    this.navController.navigateForward('/catalogo');
+    this.navController.navigateForward('/tabs/tab2');
   }
 
   notificaciones() {

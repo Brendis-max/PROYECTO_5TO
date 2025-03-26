@@ -18,7 +18,7 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <!-- Mostrar los productos en el carrito -->
+   
     <ion-item *ngFor="let producto of productosCarrito" class="producto-item">
       <img [src]="producto.imagen || 'assets/default-image.jpg'" alt="{{ producto.nombre }}" class="producto-img"/>
       <ion-label class="producto-info">
@@ -31,7 +31,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- Si no hay productos en el carrito -->
+
   <div *ngIf="productosCarrito.length === 0" class="no-productos">
     <p>No hay productos en el carrito.</p>
   </div>
