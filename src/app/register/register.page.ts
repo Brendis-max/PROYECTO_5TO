@@ -95,9 +95,10 @@ export class RegisterPage {
   }
 
   private isPasswordValid(): boolean {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
     return passwordRegex.test(this.password);  
   }
+  
 
   goToLogin() {
     this.router.navigate(['/login']);
